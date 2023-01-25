@@ -39,11 +39,23 @@ class _IncomeState extends State<Income> {
     );
   }
 }
-class Foreground extends StatelessWidget {
+class Foreground extends StatefulWidget {
   const Foreground({
     Key? key,
   }) : super(key: key);
 
+  @override
+  State<Foreground> createState() => _ForegroundState();
+}
+
+class _ForegroundState extends State<Foreground> {
+  TextEditingController vrconroller=TextEditingController();
+  TextEditingController psconroller=TextEditingController();
+  TextEditingController dstvconroller=TextEditingController();
+  TextEditingController betingconroller=TextEditingController();
+  TextEditingController poolconroller=TextEditingController();
+  TextEditingController cofteaconroller=TextEditingController();
+  TextEditingController otherconroller=TextEditingController();
   @override
   Widget build(BuildContext context) {
      double w=MediaQuery.of(context).size.width;
@@ -82,12 +94,11 @@ class Foreground extends StatelessWidget {
           width:w*0.6,
           margin: EdgeInsets.only(left: h*0.05),
            child: TextField(
-         
+         controller:vrconroller,
             style: TextStyle(
               fontSize: h*0.02,
               color: Colors.white,),
               decoration:InputDecoration(
-               
                 labelText: "Virtual Reality",
                 labelStyle: TextStyle(color: Colors.grey[400],fontSize: h*0.025),
                 filled: true,
@@ -101,13 +112,12 @@ class Foreground extends StatelessWidget {
            ),
          ),
            SizedBox(height:h*0.03),
-            Container(
-              
+            Container( 
           height: h*0.07,
           width:w*0.6,
          margin: EdgeInsets.only(left: h*0.05),
            child: TextField(
-          
+            controller: psconroller,
             style: TextStyle(
               fontSize: h*0.02,
               color: Colors.white,),
@@ -131,7 +141,7 @@ class Foreground extends StatelessWidget {
           width:w*0.6,
           margin: EdgeInsets.only(left: h*0.05),
            child: TextField(
-        
+            controller: dstvconroller,
             style: TextStyle(
               fontSize: h*0.02,
               color: Colors.white,),
@@ -156,7 +166,7 @@ class Foreground extends StatelessWidget {
           width:w*0.6,
           margin: EdgeInsets.only(left: h*0.05),
            child: TextField(
-          
+           controller: betingconroller,
             style: TextStyle(
               fontSize: h*0.02,
               color: Colors.white,),
@@ -180,7 +190,7 @@ class Foreground extends StatelessWidget {
           width:w*0.6,
          margin: EdgeInsets.only(left: h*0.05),
            child: TextField(
-            
+            controller: poolconroller,
             style: TextStyle(
               fontSize: h*0.02,
               color: Colors.white,),
@@ -203,7 +213,7 @@ class Foreground extends StatelessWidget {
           width:w*0.6,
           margin: EdgeInsets.only(left: h*0.05),
            child: TextField(
-       
+           controller: cofteaconroller,
             style: TextStyle(
               fontSize: h*0.02,
               color: Colors.white,),
@@ -227,7 +237,7 @@ class Foreground extends StatelessWidget {
           width:w*0.6,
           margin: EdgeInsets.only(left: h*0.05),
            child: TextField(
-     
+            controller: otherconroller,
             style: TextStyle(
               fontSize: h*0.02,
               color: Colors.white,),
