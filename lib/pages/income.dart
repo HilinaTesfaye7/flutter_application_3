@@ -49,13 +49,46 @@ class Foreground extends StatefulWidget {
 }
 
 class _ForegroundState extends State<Foreground> {
-  TextEditingController vrconroller=TextEditingController();
-  TextEditingController psconroller=TextEditingController();
-  TextEditingController dstvconroller=TextEditingController();
-  TextEditingController betingconroller=TextEditingController();
-  TextEditingController poolconroller=TextEditingController();
-  TextEditingController cofteaconroller=TextEditingController();
-  TextEditingController otherconroller=TextEditingController();
+  TextEditingController vr=TextEditingController();
+  TextEditingController ps=TextEditingController();
+  TextEditingController dstv=TextEditingController();
+  TextEditingController betting=TextEditingController();
+  TextEditingController pool=TextEditingController();
+  TextEditingController coftea=TextEditingController();
+  TextEditingController other=TextEditingController();
+
+  Future<void> insertrecord()async{
+
+
+  if(vr.text !="" && ps.text!="" && dstv.text!="" && betting.text!="" && pool.text!="" && coftea.text!=""&& other.text!=""){
+    try{
+      String uri="http://127.0.0.1:8080/aid/insert_record.php";
+      var res=await http.post(Uri.parse(uri),body:{
+        "virtual reality":vr.text,
+        "play station":ps.text,
+        "dstv":dstv.text,
+        "betting":betting.text,
+        "pool":pool.text,
+        "coffee and tea":coftea.text,
+        "other":other.text,
+      });
+     
+
+      var response=jsonDecode(res.body);
+     
+      if(response["sucess"]=="true")
+      {
+        print("record Inserted");
+      }else{
+        print ("some issue");
+      }
+    }catch(e){
+      print(e);
+    }
+  } else {
+   print("please fill all fields");
+  }
+}
   @override
   Widget build(BuildContext context) {
      double w=MediaQuery.of(context).size.width;
@@ -94,7 +127,7 @@ class _ForegroundState extends State<Foreground> {
           width:w*0.6,
           margin: EdgeInsets.only(left: h*0.05),
            child: TextField(
-         controller:vrconroller,
+         controller:vr,
             style: TextStyle(
               fontSize: h*0.02,
               color: Colors.white,),
@@ -117,7 +150,7 @@ class _ForegroundState extends State<Foreground> {
           width:w*0.6,
          margin: EdgeInsets.only(left: h*0.05),
            child: TextField(
-            controller: psconroller,
+            controller: ps,
             style: TextStyle(
               fontSize: h*0.02,
               color: Colors.white,),
@@ -141,7 +174,7 @@ class _ForegroundState extends State<Foreground> {
           width:w*0.6,
           margin: EdgeInsets.only(left: h*0.05),
            child: TextField(
-            controller: dstvconroller,
+            controller: dstv,
             style: TextStyle(
               fontSize: h*0.02,
               color: Colors.white,),
@@ -166,7 +199,7 @@ class _ForegroundState extends State<Foreground> {
           width:w*0.6,
           margin: EdgeInsets.only(left: h*0.05),
            child: TextField(
-           controller: betingconroller,
+           controller: betting,
             style: TextStyle(
               fontSize: h*0.02,
               color: Colors.white,),
@@ -190,7 +223,7 @@ class _ForegroundState extends State<Foreground> {
           width:w*0.6,
          margin: EdgeInsets.only(left: h*0.05),
            child: TextField(
-            controller: poolconroller,
+            controller: pool,
             style: TextStyle(
               fontSize: h*0.02,
               color: Colors.white,),
@@ -213,7 +246,7 @@ class _ForegroundState extends State<Foreground> {
           width:w*0.6,
           margin: EdgeInsets.only(left: h*0.05),
            child: TextField(
-           controller: cofteaconroller,
+           controller: coftea,
             style: TextStyle(
               fontSize: h*0.02,
               color: Colors.white,),
@@ -237,7 +270,7 @@ class _ForegroundState extends State<Foreground> {
           width:w*0.6,
           margin: EdgeInsets.only(left: h*0.05),
            child: TextField(
-            controller: otherconroller,
+            controller: other,
             style: TextStyle(
               fontSize: h*0.02,
               color: Colors.white,),
@@ -258,7 +291,7 @@ class _ForegroundState extends State<Foreground> {
           SizedBox(height:h*0.03),
           GestureDetector(
              onTap: () {
-            
+            insertrecord();
           },
            child: Container(
                padding: EdgeInsets.only(left: h*0.05),
